@@ -1,25 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import './index.css';
-import { DefaultLayout } from './layout/defaultLayout';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import './index.css'
+import { DefaultLayout } from './layout/defaultLayout'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <DefaultLayout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <div>Home</div>,
       },
       {
-        path: "/:id",
+        path: '/:id',
         element: <div>Detail</div>,
-      }
-    ]
+      },
+    ],
   },
-]);
+])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
