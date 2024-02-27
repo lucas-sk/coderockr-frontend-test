@@ -31,7 +31,6 @@ export function Header() {
                       type="text"
                       id="name"
                       placeholder="Fill your full name"
-                      className="placeholder:text-black/50 border rounded-sm border-shaft-950 p-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-shaft-950/50"
                     />
                   </label>
                   <label htmlFor="email" className="flex flex-col gap-1">
@@ -40,7 +39,6 @@ export function Header() {
                       type="text"
                       id="email"
                       placeholder="Fill a valid e-mail"
-                      className=""
                     />
                   </label>
                   <label htmlFor="phone" className="flex flex-col gap-1">
@@ -49,16 +47,11 @@ export function Header() {
                       type="text"
                       id="phone"
                       placeholder="Fill your phone"
-                      className="placeholder:text-black/50 border rounded-sm border-shaft-950 p-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-shaft-950/50"
                     />
                   </label>
                   <label htmlFor="post" className="flex flex-col gap-1">
                     Post
-                    <Textarea
-                      placeholder="hello"
-                      id="post"
-                      className="placeholder:text-black/50 border h-[200px] rounded-sm border-shaft-950 p-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-shaft-950/50 resize-none"
-                    />
+                    <Textarea placeholder="hello" id="post" />
                   </label>
                   <Dialog.Close asChild>
                     <button className="inline-flex gap-9 bg-shaft-950 text-white py-3 px-10 max-w-[230px] items-center self-center hover:bg-shaft-950/90">
