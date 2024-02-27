@@ -2,19 +2,21 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Link } from 'react-router-dom'
 import { CrossIcon } from './icons/crossIcon'
 import { SendIcon } from './icons/sendIcon'
+import { Input } from './ui/input'
+import { Textarea } from './ui/textarea'
 
 export function Header() {
   return (
     <header className="w-full p-7 bg-shaft-950 text-white">
       <div className="mx-auto max-w-7xl flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Rockr Blog</h1>
+        <h1 className="text-4xl leading-[42.66px] font-bold">Rockr Blog</h1>
         <nav className="space-x-32">
-          <Link className="text-2xl" to={'/'}>
+          <Link className="text-2xl leading-[37.92px]" to={'/'}>
             Posts
           </Link>
           <Dialog.Root>
             <Dialog.Trigger asChild>
-              <button className="text-2xl">Contact</button>
+              <button className="text-2xl leading-[37.92px]">Contact</button>
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0" />
@@ -25,7 +27,7 @@ export function Header() {
                 <form action="" className="flex flex-col gap-8">
                   <label htmlFor="name" className="flex flex-col gap-1">
                     Name
-                    <input
+                    <Input
                       type="text"
                       id="name"
                       placeholder="Fill your full name"
@@ -34,11 +36,11 @@ export function Header() {
                   </label>
                   <label htmlFor="email" className="flex flex-col gap-1">
                     E-mail
-                    <input
+                    <Input
                       type="text"
                       id="email"
                       placeholder="Fill a valid e-mail"
-                      className="placeholder:text-black/50 border rounded-sm border-shaft-950 p-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-shaft-950/50"
+                      className=""
                     />
                   </label>
                   <label htmlFor="phone" className="flex flex-col gap-1">
@@ -52,7 +54,7 @@ export function Header() {
                   </label>
                   <label htmlFor="post" className="flex flex-col gap-1">
                     Post
-                    <textarea
+                    <Textarea
                       placeholder="hello"
                       id="post"
                       className="placeholder:text-black/50 border h-[200px] rounded-sm border-shaft-950 p-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-shaft-950/50 resize-none"
