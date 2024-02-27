@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { useMutation } from '@tanstack/react-query'
+import { RegisterContact } from '../api/register-contact'
 import { CrossIcon } from './icons/crossIcon'
 import { SendIcon } from './icons/sendIcon'
 import { Input } from './ui/input'
@@ -29,7 +31,12 @@ export function Header() {
     resolver: zodResolver(contactFormSchema),
   })
 
+  const { mutateAsync: registerContact } = useMutation({
+    mutationFn: RegisterContact,
+  })
+
   function handleSendContact({ email, name, post, phone }: ContactFormSchema) {
+    registerContact({ email, name, post, phone })
     toast.success('Contact sent')
     reset()
   }
