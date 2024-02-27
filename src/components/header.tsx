@@ -13,7 +13,7 @@ export function Header() {
             Posts
           </Link>
           <Dialog.Root>
-            <Dialog.Trigger>
+            <Dialog.Trigger asChild>
               <button className="text-2xl">Contact</button>
             </Dialog.Trigger>
             <Dialog.Portal>

@@ -12,7 +12,7 @@ export function PostDetails() {
     navigate('/')
   }
 
-  const { data: post } = useQuery(
+  const { data: post, isLoading } = useQuery(
     {
       queryKey: ['post', postId],
       queryFn: () => {
@@ -23,12 +23,16 @@ export function PostDetails() {
     queryClient,
   )
 
+  if (isLoading) {
+    return <div>Carregando...</div>
+  }
+
   const createdAtPostFormatted = dayjs(
     new Date(post.createdAt.slice(0, -1)), // para remover o z minusculo que está vindo da api
   ).format('MMM D, YYYY')
 
   return (
-    <div className="max-w-screen-xl mx-auto bg-white space-y-32 pb-40">
+    <div className="max-w-screen-xl mx-auto mt-[100px] bg-white space-y-32 pb-40">
       <header className="grid grid-cols-2">
         <img src={post?.image} alt="post" className="w-full object-cover" />
         <div className="self-center justify-self-center flex flex-col gap-4 max-w-[400px]">
