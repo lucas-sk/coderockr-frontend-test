@@ -1,11 +1,39 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { toast } from 'sonner'
+import { z } from 'zod'
+
 import { CrossIcon } from './icons/crossIcon'
 import { SendIcon } from './icons/sendIcon'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 
+const contactFormSchema = z.object({
+  name: z.string().min(3, 'Name too short'),
+  email: z.string().email('Invalid e-mail'),
+  phone: z.string().min(8, 'Phone too short'),
+  post: z.string().min(5, 'Post too short'),
+})
+
+type ContactFormSchema = z.infer<typeof contactFormSchema>
+
 export function Header() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormSchema>({
+    resolver: zodResolver(contactFormSchema),
+  })
+
+  function handleSendContact({ email, name, post, phone }: ContactFormSchema) {
+    toast.success('Contact sent')
+    reset()
+  }
+
   return (
     <header className="w-full p-7 bg-shaft-950 text-white">
       <div className="mx-auto max-w-7xl flex items-center justify-between">
@@ -24,14 +52,23 @@ export function Header() {
                 <Dialog.Title className="text-2xl text-gamboge-500 font-bold text-center mb-4">
                   Contact
                 </Dialog.Title>
-                <form action="" className="flex flex-col gap-8">
+                <form
+                  className="flex flex-col gap-8"
+                  onSubmit={handleSubmit(handleSendContact)}
+                >
                   <label htmlFor="name" className="flex flex-col gap-1">
                     Name
                     <Input
                       type="text"
                       id="name"
                       placeholder="Fill your full name"
+                      {...register('name')}
                     />
+                    {errors.name && (
+                      <span className="text-red-500 text-sm">
+                        {errors.name.message}
+                      </span>
+                    )}
                   </label>
                   <label htmlFor="email" className="flex flex-col gap-1">
                     E-mail
@@ -39,26 +76,48 @@ export function Header() {
                       type="text"
                       id="email"
                       placeholder="Fill a valid e-mail"
+                      {...register('email')}
                     />
+                    {errors.email && (
+                      <span className="text-red-500 text-sm">
+                        {errors.email.message}
+                      </span>
+                    )}
                   </label>
                   <label htmlFor="phone" className="flex flex-col gap-1">
                     Phone
-                    <input
+                    <Input
                       type="text"
                       id="phone"
                       placeholder="Fill your phone"
+                      {...register('phone')}
                     />
+                    {errors.phone && (
+                      <span className="text-red-500 text-sm">
+                        {errors.phone.message}
+                      </span>
+                    )}
                   </label>
                   <label htmlFor="post" className="flex flex-col gap-1">
                     Post
-                    <Textarea placeholder="hello" id="post" />
+                    <Textarea
+                      placeholder="hello"
+                      id="post"
+                      {...register('post')}
+                    />
+                    {errors.post && (
+                      <span className="text-red-500 text-sm">
+                        {errors.post.message}
+                      </span>
+                    )}
                   </label>
-                  <Dialog.Close asChild>
-                    <button className="inline-flex gap-9 bg-shaft-950 text-white py-3 px-10 max-w-[230px] items-center self-center hover:bg-shaft-950/90">
-                      <SendIcon />
-                      Submit
-                    </button>
-                  </Dialog.Close>
+                  <button
+                    type="submit"
+                    className="inline-flex gap-9 bg-shaft-950 text-white py-3 px-10 max-w-[230px] items-center self-center hover:bg-shaft-950/90"
+                  >
+                    <SendIcon />
+                    Submit
+                  </button>
                 </form>
                 <Dialog.Close asChild>
                   <button
