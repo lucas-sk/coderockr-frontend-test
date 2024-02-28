@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getPostDetails } from '../../../api/get-post-details'
+import { LoaderIcon } from '../../../components/icons/loaderIcon'
 import { queryClient } from '../../../lib/react-query'
 
 export function PostDetails() {
@@ -24,7 +25,11 @@ export function PostDetails() {
   )
 
   if (isLoading) {
-    return <div>Carregando...</div>
+    return (
+      <div className="mx-auto mt-[100px] space-y-32 pb-40 flex items-center justify-center">
+        <LoaderIcon className="animate-spin size-12" />
+      </div>
+    )
   }
 
   const createdAtPostFormatted = dayjs(

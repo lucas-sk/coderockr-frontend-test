@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { getPosts } from '../../api/get-posts'
+import { LoaderIcon } from '../../components/icons/loaderIcon'
 import { ReadMoreIcon } from '../../components/icons/readMoreIcon'
 import { queryClient } from '../../lib/react-query'
 import { mergeArrays } from '../../utils/mergeArrays'
@@ -15,11 +16,11 @@ export function Posts() {
   )
 
   if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (!posts) {
-    return <div>No posts found</div>
+    return (
+      <div className="mx-auto mt-[60px] flex items-center justify-center">
+        <LoaderIcon className="animate-spin size-12" />
+      </div>
+    )
   }
 
   const postIds = posts.map((post) => post.id)

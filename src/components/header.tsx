@@ -35,7 +35,7 @@ export function Header() {
   }
 
   return (
-    <header className="w-full p-7 bg-shaft-950 text-white">
+    <header className="w-full p-7 bg-shaft-950 text-white sticky top-0">
       <div className="mx-auto max-w-7xl flex items-center justify-between">
         <h1 className="text-4xl leading-[42.66px] font-bold">Rockr Blog</h1>
         <nav className="space-x-32">
