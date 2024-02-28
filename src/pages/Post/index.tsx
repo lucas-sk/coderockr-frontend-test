@@ -23,7 +23,11 @@ export function Posts() {
     )
   }
 
-  const postIds = posts.map((post) => post.id)
+  const postIds = posts?.map((post) => post.id)
+
+  if (!postIds) {
+    return null
+  }
 
   function sortPosts(postsIds: number[]) {
     const postsBig: number[] = []
@@ -56,7 +60,7 @@ export function Posts() {
   return (
     <div className="max-w-[1920px] mx-auto mt-[60px] space-y-32 pb-40">
       <div className="grid grid-cols-2 gap-y-80">
-        {posts.map((post) => {
+        {posts?.map((post) => {
           if (postsBig.includes(post.id)) {
             return (
               <div

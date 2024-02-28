@@ -32,6 +32,10 @@ export function PostDetails() {
     )
   }
 
+  if (!post) {
+    return null
+  }
+
   const createdAtPostFormatted = dayjs(
     new Date(post.createdAt.slice(0, -1)), // para remover o z minusculo que está vindo da api
   ).format('MMM D, YYYY')

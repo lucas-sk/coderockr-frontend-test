@@ -29,7 +29,7 @@ export function Header() {
     resolver: zodResolver(contactFormSchema),
   })
 
-  function handleSendContact({ email, name, post, phone }: ContactFormSchema) {
+  function handleSendContact() {
     toast.success('Contact sent')
     reset()
   }
