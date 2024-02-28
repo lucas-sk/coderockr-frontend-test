@@ -6,7 +6,7 @@ interface Author {
 }
 
 interface Post {
-  id: string
+  id: number
   author: Author
   title: string
   content: string

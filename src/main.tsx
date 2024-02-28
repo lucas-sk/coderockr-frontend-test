@@ -9,7 +9,6 @@ import { Posts } from './pages/Post'
 import { PostDetails } from './pages/Post/[id]'
 
 import './index.css'
-import { RegisterNewPost } from './pages/Post/RegisterNewPost'
 
 const router = createBrowserRouter([
   {
@@ -23,10 +22,6 @@ const router = createBrowserRouter([
       {
         path: '/:id',
         element: <PostDetails />,
-      },
-      {
-        path: '/post/register',
-        element: <RegisterNewPost />,
       },
     ],
   },
