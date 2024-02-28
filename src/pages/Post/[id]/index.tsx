@@ -14,7 +14,7 @@ export function PostDetails() {
 
   const { data: post, isLoading } = useQuery(
     {
-      queryKey: ['post', postId],
+      queryKey: ['posts', postId],
       queryFn: () => {
         if (!postId) return
         return getPostDetails({ postId })

@@ -8,7 +8,7 @@ import { mergeArrays } from '../../utils/mergeArrays'
 export function Posts() {
   const { data: posts, isLoading } = useQuery(
     {
-      queryKey: ['post'],
+      queryKey: ['posts'],
       queryFn: () => getPosts(),
     },
     queryClient,
