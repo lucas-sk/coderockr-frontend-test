@@ -130,12 +130,6 @@ export function Header() {
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>
-          <Link
-            className="py-[13px] px-[34px] inline-flex items-center text-bold text-[22px] leading-[26.07px] bg-gamboge-500 text-white hover:bg-gamboge-500/65 rounded-full"
-            to={'/post/register'}
-          >
-            New Post
-          </Link>
         </nav>
       </div>
     </header>
