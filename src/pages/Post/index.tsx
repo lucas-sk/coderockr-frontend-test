@@ -5,6 +5,7 @@ import { getPosts } from '../../api/get-posts'
 import { LoaderIcon } from '../../components/icons/loaderIcon'
 import { ReadMoreIcon } from '../../components/icons/readMoreIcon'
 import { queryClient } from '../../lib/react-query'
+import { formatText } from '../../utils/formatText'
 import { mergeArrays } from '../../utils/mergeArrays'
 
 export function Posts() {
@@ -62,16 +63,16 @@ export function Posts() {
     <>
       <Helmet title="Posts" />
       <div className="max-w-[1920px] mx-auto mt-[60px] space-y-32 pb-40">
-        <div className="grid grid-cols-2 gap-y-80">
+        <div className="flex flex-col gap-40 2xl:grid 2xl:grid-cols-2 2xl:gap-y-80 2xl:gap-x-0">
           {posts?.map((post) => {
             if (postsBig.includes(post.id)) {
               return (
                 <div
                   key={post.id}
-                  className="bg-white col-span-2 justify-self-end  max-w-7xl h-[640px] flex gap-20"
+                  className="bg-white 2xl:col-span-2 justify-self-end self-end w-full lg:max-w-7xl flex flex-col min-h-[640px] lg:flex-row gap-4 md:gap-20 "
                 >
-                  <img src={post.image} alt="" className="max-w-[640px]" />
-                  <div className="self-center max-w-[480px]">
+                  <img src={post.image} alt="" className="lg:max-w-[640px]" />
+                  <div className="self-center xl:max-w-[480px] px-4">
                     <p className="text-2xl leading-[34.13px]">
                       {post.author.name}
                     </p>
@@ -79,7 +80,7 @@ export function Posts() {
                       {post.title}
                     </h3>
                     <p className="text-2xl leading-[34.13px]">
-                      {post.content.slice(0, 100)}
+                      {formatText(post.content, 20)}
                     </p>
                   </div>
                   <Link className="self-end mr-10 mb-10" to={`${post.id}`}>
@@ -92,10 +93,10 @@ export function Posts() {
               return (
                 <div
                   key={post.id}
-                  className="bg-white col-span-2 max-w-7xl h-[640px] flex gap-20"
+                  className="bg-white 2xl:col-span-2 w-full lg:max-w-7xl flex flex-col min-h-[640px] lg:flex-row gap-4 md:gap-20 "
                 >
-                  <img src={post.image} alt="" className="max-w-[640px]" />
-                  <div className="self-center max-w-[480px]">
+                  <img src={post.image} alt="" className=" object-cover " />
+                  <div className="self-center xl:max-w-[480px] px-3">
                     <p className="text-2xl leading-[34.13px]">
                       {post.author.name}
                     </p>
@@ -103,7 +104,7 @@ export function Posts() {
                       {post.title}
                     </h3>
                     <p className="text-2xl leading-[34.13px]">
-                      {post.content.slice(0, 100)}
+                      {formatText(post.content, 20)}
                     </p>
                   </div>
                   <Link className="self-end mr-10 mb-10" to={`${post.id}`}>
@@ -117,41 +118,10 @@ export function Posts() {
               return (
                 <div
                   key={post.id}
-                  className="bg-white grid grid-cols-3 auto-rows-[320px] items-start pl-20"
+                  className="bg-white flex flex-col lg:flex-row min-h-[320px] 2xl:pl-20"
                 >
-                  <img
-                    src={post.image}
-                    alt=""
-                    className="size-80 col-start-3 row-start-1"
-                  />
-                  <div className="self-center flex gap-4 col-span-2 col-start-1 row-start-1 mr-10">
-                    <div>
-                      <p className="text-2xl leading-[34.13px]">
-                        {post.author.name}
-                      </p>
-                      <h3 className="text-gamboge-500 text-[36px] leading-[42.66px]">
-                        {post.title}
-                      </h3>
-                      <p className="text-2xl leading-[34.13px]">
-                        {post.content.slice(0, 100)}
-                      </p>
-                    </div>
-                    <Link className="self-end" to={`${post.id}`}>
-                      <ReadMoreIcon />
-                    </Link>
-                  </div>
-                </div>
-              )
-            }
-
-            return (
-              <div
-                key={post.id}
-                className="bg-white grid grid-cols-3 h-[320px] items-start pr-20"
-              >
-                <img src={post.image} alt="" className="size-80 col-span-1" />
-                <div className="self-center flex gap-4 col-span-2 ml-20">
-                  <div>
+                  <img src={post.image} alt="" className="xl:size-80" />
+                  <div className="self-center flex flex-col gap-4 px-4 lg:mr-10">
                     <p className="text-2xl leading-[34.13px]">
                       {post.author.name}
                     </p>
@@ -159,13 +129,42 @@ export function Posts() {
                       {post.title}
                     </h3>
                     <p className="text-2xl leading-[34.13px]">
-                      {post.content.slice(0, 100)}
+                      {formatText(post.content, 20)}
                     </p>
                   </div>
-                  <Link className="self-end" to={`${post.id}`}>
+                  <Link
+                    className="self-end mr-4 md:mr-10 mb-10"
+                    to={`${post.id}`}
+                  >
                     <ReadMoreIcon />
                   </Link>
                 </div>
+              )
+            }
+
+            return (
+              <div
+                key={post.id}
+                className="bg-white flex flex-col lg:flex-row min-h-[320px]"
+              >
+                <img src={post.image} alt="" className="lg:size-80" />
+                <div className="self-center flex flex-col gap-4 px-4 ">
+                  <p className="text-2xl leading-[34.13px]">
+                    {post.author.name}
+                  </p>
+                  <h3 className="text-gamboge-500 text-2xl font-semibold md:text-[36px] leading-[42.66px]">
+                    {post.title}
+                  </h3>
+                  <p className="text-2xl leading-[34.13px]">
+                    {formatText(post.content, 20)}
+                  </p>
+                </div>
+                <Link
+                  className="self-end mr-4 md:mr-10 mb-10"
+                  to={`${post.id}`}
+                >
+                  <ReadMoreIcon />
+                </Link>
               </div>
             )
           })}

@@ -37,8 +37,10 @@ export function Header() {
   return (
     <header className="w-full p-7 bg-shaft-950 text-white sticky top-0">
       <div className="mx-auto max-w-7xl flex items-center justify-between">
-        <h1 className="text-4xl leading-[42.66px] font-bold">Rockr Blog</h1>
-        <nav className="space-x-32">
+        <h1 className="md:text-4xl text-2xl leading-[42.66px] font-bold">
+          Rockr Blog
+        </h1>
+        <nav className="flex items-center md:gap-8 gap-3">
           <Link className="text-2xl leading-[37.92px]" to={'/'}>
             Posts
           </Link>
